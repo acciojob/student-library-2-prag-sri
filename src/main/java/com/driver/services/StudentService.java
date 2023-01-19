@@ -1,5 +1,8 @@
 package com.driver.services;
 
+import com.driver.RequestDTO.StudentRequestDTO;
+import com.driver.converters.StudentConverter;
+import com.driver.models.Card;
 import com.driver.models.Student;
 import com.driver.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +19,24 @@ public class StudentService {
     StudentRepository studentRepository4;
 
     public Student getDetailsByEmail(String email){
-        Student student = null;
-
-        return student;
+        for(Student student: studentRepository4.findAll())
+        {
+            String currEmail= student.getEmailId();
+            if(currEmail.equals(email))
+                return student;
+        }
+        return null;
     }
 
     public Student getDetailsById(int id){
-        Student student = null;
-
+        Student student = studentRepository4.findById(id).get();
         return student;
     }
 
-    public void createStudent(Student student){
+    public void createStudent(StudentRequestDTO studentRequestDTO){
+        Student newStudent= StudentConverter.convertStudentDTOtoEntity(studentRequestDTO);
+        studentRepository4.save(newStudent);
+        Card newCard= cardService4.createAndReturn(newStudent);
 
     }
 
@@ -37,5 +46,13 @@ public class StudentService {
 
     public void deleteStudent(int id){
         //Delete student and deactivate corresponding card
+        Student student= studentRepository4.findById(id).get();
+        Card card= student.getCard();
+        cardService4.deactivateCard(id);
+        card.setStudent(null);
+        student.setCard(null);
+        studentRepository4.delete(student);
+
+
     }
 }
