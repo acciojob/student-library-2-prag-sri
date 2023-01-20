@@ -1,6 +1,5 @@
 package com.driver.controller;
 
-import com.driver.RequestDTO.StudentRequestDTO;
 import com.driver.models.Student;
 import com.driver.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

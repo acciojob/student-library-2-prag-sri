@@ -1,7 +1,5 @@
 package com.driver.services;
 
-import com.driver.RequestDTO.AuthorRequestDTO;
-import com.driver.converters.AuthorConverter;
 import com.driver.models.Author;
 import com.driver.repositories.AuthorRepository;
 import lombok.extern.slf4j.Slf4j;
