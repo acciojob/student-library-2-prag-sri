@@ -21,9 +21,7 @@ public class BookService {
     AuthorRepository authorRepository1;
 
     public void createBook(Book book){
-        int authorId = book.getAuthor().getId();
-
-        Author author =  authorRepository1.findById(authorId).get();
+        Author author = book.getAuthor();
         author.getBooksWritten().add(book);
 
         book.setAuthor(author);
