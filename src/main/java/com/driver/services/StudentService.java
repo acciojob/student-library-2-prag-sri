@@ -33,8 +33,8 @@ public class StudentService {
         return student;
     }
 
-    public void createStudent(StudentRequestDTO studentRequestDTO){
-        Student newStudent= StudentConverter.convertStudentDTOtoEntity(studentRequestDTO);
+    public void createStudent(Student newStudent){
+        //Student newStudent= StudentConverter.convertStudentDTOtoEntity(studentRequestDTO);
         studentRepository4.save(newStudent);
         Card newCard= cardService4.createAndReturn(newStudent);
 
