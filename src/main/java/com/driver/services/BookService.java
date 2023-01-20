@@ -20,11 +20,7 @@ public class BookService {
     @Autowired
     AuthorRepository authorRepository1;
 
-    public String createBook(Book book){
-        //Book newbook= BookConverter.convertBookDTOtoEntity(bookRequestDTO);
-
-//        int authorId= newbook.getAuthorId();
-//        Author author= authorRepository.findById(authorId).get();
+    public void createBook(Book book){
         int authorId= book.getAuthor().getId();
         Author author= authorRepository1.findById(authorId).get();
 
@@ -36,8 +32,6 @@ public class BookService {
 
         authorRepository1.save(author);
 
-
-        return "Success";
     }
 
     public List<Book> getBooks(String genre, boolean available, String author){
