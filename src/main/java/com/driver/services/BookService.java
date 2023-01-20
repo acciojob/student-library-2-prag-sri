@@ -18,26 +18,24 @@ public class BookService {
     BookRepository bookRepository2;
 
     @Autowired
-    AuthorRepository authorRepository;
+    AuthorRepository authorRepository1;
 
-    public String createBook(Book newbook){
+    public String createBook(Book book){
         //Book newbook= BookConverter.convertBookDTOtoEntity(bookRequestDTO);
 
 //        int authorId= newbook.getAuthorId();
 //        Author author= authorRepository.findById(authorId).get();
-        if(newbook!=null)
-        {
-            int authorId= newbook.getAuthor().getId();
-            Author author= authorRepository.findById(authorId).get();
+        int authorId= book.getAuthor().getId();
+        Author author= authorRepository1.findById(authorId).get();
 
-            author.getBooksWritten().add(newbook);
+        author.getBooksWritten().add(book);
 
-            newbook.setAuthor(author);
+        book.setAuthor(author);
 
-            bookRepository2.save(newbook);
+        bookRepository2.save(book);
 
-            authorRepository.save(author);
-        }
+        authorRepository1.save(author);
+
 
         return "Success";
     }
