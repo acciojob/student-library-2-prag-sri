@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,6 +36,7 @@ public class Author {
         this.email = email;
         this.age = age;
         this.country = country;
+        this.booksWritten= new ArrayList<>();
     }
 
     public int getId() {
