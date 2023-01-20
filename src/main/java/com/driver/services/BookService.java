@@ -22,7 +22,6 @@ public class BookService {
 
     public String create(Book newbook){
         //Book newbook= BookConverter.convertBookDTOtoEntity(bookRequestDTO);
-        newbook.setAvailable(true);
 
 //        int authorId= newbook.getAuthorId();
 //        Author author= authorRepository.findById(authorId).get();

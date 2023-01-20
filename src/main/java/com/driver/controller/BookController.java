@@ -15,14 +15,14 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    BookService bookService2;
+    BookService bookService;
 
     //Write createBook API with required annotations
     @PostMapping("/create_book")
-    public ResponseEntity<String> createBook(@RequestBody()Book book)
+    public ResponseEntity createBook(@RequestBody()Book book)
     {
-        String result= bookService2.create(book);
-        return new ResponseEntity<>(result,HttpStatus.CREATED);
+        bookService.create(book);
+        return new ResponseEntity<>("the book is added successfully",HttpStatus.CREATED);
     }
 
     @GetMapping("/get_books")
@@ -31,7 +31,7 @@ public class BookController {
                                    @RequestParam(value = "available", required = false, defaultValue = "false") boolean available,
                                    @RequestParam(value = "author", required = false) String author){
 
-        List<Book> bookList = bookService2.getBooks(genre,available,author); //find the elements of the list by yourself
+        List<Book> bookList = bookService.getBooks(genre,available,author); //find the elements of the list by yourself
 
         return new ResponseEntity<>(bookList, HttpStatus.OK);
 
