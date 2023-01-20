@@ -20,7 +20,7 @@ public class BookService {
     @Autowired
     AuthorRepository authorRepository;
 
-    public String create(Book newbook){
+    public String createBook(Book newbook){
         //Book newbook= BookConverter.convertBookDTOtoEntity(bookRequestDTO);
 
 //        int authorId= newbook.getAuthorId();
