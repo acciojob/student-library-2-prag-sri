@@ -22,7 +22,8 @@ public class BookService {
 
     public void createBook(Book book){
         Author author = book.getAuthor();
-        author.getBooksWritten().add(book);
+        if(author!=null)
+            author.getBooksWritten().add(book);
 
         book.setAuthor(author);
 
