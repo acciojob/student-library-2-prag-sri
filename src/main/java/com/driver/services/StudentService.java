@@ -41,7 +41,7 @@ public class StudentService {
     }
 
     public void updateStudent(Student student){
-
+        studentRepository4.updateStudentDetails(student);
     }
 
     public void deleteStudent(int id){
