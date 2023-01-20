@@ -22,12 +22,13 @@ public class BookService {
     @Autowired
     AuthorRepository authorRepository;
 
-    public String create(BookRequestDTO bookRequestDTO){
-        Book newbook= BookConverter.convertBookDTOtoEntity(bookRequestDTO);
+    public String create(Book newbook){
+        //Book newbook= BookConverter.convertBookDTOtoEntity(bookRequestDTO);
         newbook.setAvailable(true);
 
-        int authorId= bookRequestDTO.getAuthorId();
-        Author author= authorRepository.findById(authorId).get();
+//        int authorId= newbook.getAuthorId();
+//        Author author= authorRepository.findById(authorId).get();
+        Author author= newbook.getAuthor();
         newbook.setAuthor(author);
 
         List<Book> bookList= author.getBooksWritten();

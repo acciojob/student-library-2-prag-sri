@@ -15,8 +15,8 @@ public class AuthorService {
     @Autowired
     AuthorRepository authorRepository1;
 
-    public String create(AuthorRequestDTO authorRequestDTO){
-        Author author= AuthorConverter.convertAuthorDTOtoEntity(authorRequestDTO);
+    public String create(Author author){
+        //Author author= AuthorConverter.convertAuthorDTOtoEntity(authorRequestDTO);
         authorRepository1.save(author);
         return "Success";
     }
