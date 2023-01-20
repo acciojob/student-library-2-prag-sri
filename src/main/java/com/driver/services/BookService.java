@@ -25,16 +25,19 @@ public class BookService {
 
 //        int authorId= newbook.getAuthorId();
 //        Author author= authorRepository.findById(authorId).get();
-        int authorId= newbook.getAuthor().getId();
-        Author author= authorRepository.findById(authorId).get();
-        newbook.setAuthor(author);
+        if(newbook!=null)
+        {
+            int authorId= newbook.getAuthor().getId();
+            Author author= authorRepository.findById(authorId).get();
+            newbook.setAuthor(author);
 
-        List<Book> bookList= author.getBooksWritten();
-        bookList.add(newbook);
-        author.setBooksWritten(bookList);
-        bookRepository2.save(newbook);
+            List<Book> bookList= author.getBooksWritten();
+            bookList.add(newbook);
+            author.setBooksWritten(bookList);
+            bookRepository2.save(newbook);
 
-        authorRepository.save(author);
+            authorRepository.save(author);
+        }
 
         return "Success";
     }

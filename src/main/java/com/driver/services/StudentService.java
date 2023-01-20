@@ -48,7 +48,7 @@ public class StudentService {
         if(student!=null)
         {
             Card card= student.getCard();
-            cardService4.deactivateCard(id);
+            cardService4.deactivateCard(card.getId());
             card.setStudent(null);
             student.setCard(null);
             studentRepository4.delete(student);
