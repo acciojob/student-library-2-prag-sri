@@ -21,15 +21,17 @@ public class BookService {
     AuthorRepository authorRepository1;
 
     public void createBook(Book book){
-        Author author = book.getAuthor();
-        if(author!=null)
-            author.getBooksWritten().add(book);
+        if(book!=null)
+        {
+            Author author = book.getAuthor();
+            if(author!=null )
+                author.getBooksWritten().add(book);
 
-        book.setAuthor(author);
+            book.setAuthor(author);
 
-        bookRepository2.save(book);
-        authorRepository1.save(author);
-
+            bookRepository2.save(book);
+            authorRepository1.save(author);
+        }
     }
 
     public List<Book> getBooks(String genre, boolean available, String author){
