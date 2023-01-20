@@ -29,11 +29,11 @@ public class BookService {
         {
             int authorId= newbook.getAuthor().getId();
             Author author= authorRepository.findById(authorId).get();
+
+            author.getBooksWritten().add(newbook);
+
             newbook.setAuthor(author);
 
-            List<Book> bookList= author.getBooksWritten();
-            bookList.add(newbook);
-            author.setBooksWritten(bookList);
             bookRepository2.save(newbook);
 
             authorRepository.save(author);

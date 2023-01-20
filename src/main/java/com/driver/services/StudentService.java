@@ -17,18 +17,11 @@ public class StudentService {
     StudentRepository studentRepository4;
 
     public Student getDetailsByEmail(String email){
-        for(Student student: studentRepository4.findAll())
-        {
-            String currEmail= student.getEmailId();
-            if(currEmail.equals(email))
-                return student;
-        }
-        return null;
+        return studentRepository4.findByEmailId(email);
     }
 
     public Student getDetailsById(int id){
-        Student student = studentRepository4.findById(id).get();
-        return student;
+        return studentRepository4.findById(id).get();
     }
 
     public void createStudent(Student newStudent){
@@ -44,15 +37,8 @@ public class StudentService {
 
     public void deleteStudent(int id){
         //Delete student and deactivate corresponding card
-        Student student= studentRepository4.findById(id).get();
-        if(student!=null)
-        {
-            Card card= student.getCard();
-            cardService4.deactivateCard(card.getId());
-            card.setStudent(null);
-            student.setCard(null);
-            studentRepository4.delete(student);
-        }
+        cardService4.deactivateCard(id);
+        studentRepository4.deleteCustom(id);
 
     }
 }
