@@ -21,15 +21,14 @@ public class BookService {
     AuthorRepository authorRepository1;
 
     public void createBook(Book book){
-        int authorId= book.getAuthor().getId();
-        Author author= authorRepository1.findById(authorId).get();
+        int authorId = book.getAuthor().getId();
 
+        Author author =  authorRepository1.findById(authorId).get();
         author.getBooksWritten().add(book);
 
         book.setAuthor(author);
 
         bookRepository2.save(book);
-
         authorRepository1.save(author);
 
     }
