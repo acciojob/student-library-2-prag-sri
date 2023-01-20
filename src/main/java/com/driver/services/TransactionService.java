@@ -112,8 +112,7 @@ public class TransactionService {
             fine= (int)(getMax_allowed_days-noOfDays)*fine_per_day;
         }
 
-        Book book= bookRepository5.findById(bookId).get();
-        Card card= cardRepository5.findById(cardId).get();
+        Book book= transaction.getBook();
         book.setAvailable(true);
         book.setCard(null);
         bookRepository5.updateBook(book);
@@ -122,7 +121,7 @@ public class TransactionService {
         returnBookTransaction.setIssueOperation(false);
         returnBookTransaction.setBook(book);
         returnBookTransaction.setTransactionStatus(SUCCESSFUL);
-        returnBookTransaction.setCard(card);
+        returnBookTransaction.setCard(transaction.getCard());
         returnBookTransaction.setFineAmount(fine);
         transactionRepository5.save(returnBookTransaction);
         return returnBookTransaction; //return the transaction after updating all details
