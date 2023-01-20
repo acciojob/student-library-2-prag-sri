@@ -13,6 +13,7 @@ import java.util.List;
 @Table
 @Builder
 @Data
+@AllArgsConstructor
 public class Author {
 
     @Id
